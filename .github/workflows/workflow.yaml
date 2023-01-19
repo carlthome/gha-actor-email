@@ -5,11 +5,6 @@ jobs:
   lookup-user-email:
     runs-on: ubuntu-latest
     steps:
-
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: 'npm'
     - run: npm install @octokit/action
     - uses: actions/github-script@v6
       id: actor-email
