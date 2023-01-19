@@ -1,0 +1,18 @@
+on:
+  push:
+
+jobs:
+  lookup-user-email:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/github-script@v6
+      id: actor-email
+      with:
+        result-encoding: string
+        script: |
+          const octokit = new Octokit({auth: ${{ secrets.GITHUB_TOKEN }}})
+          await octokit.request('GET /user/emails{?per_page,page}', {})
+
+    - name: Display actor email 
+      run: echo "${{steps.actor-email.outputs.result}}"
