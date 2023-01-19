@@ -11,6 +11,7 @@ jobs:
       with:
         result-encoding: string
         script: |
+          const { Octokit } = require("@octokit/action");
           const octokit = new Octokit({auth: ${{ secrets.GITHUB_TOKEN }}})
           await octokit.request('GET /user/emails{?per_page,page}', {})
 
