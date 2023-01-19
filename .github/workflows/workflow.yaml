@@ -12,8 +12,10 @@ jobs:
         result-encoding: string
         script: |
           const { Octokit } = require("@octokit/action");
-          const octokit = new Octokit({auth: ${{ secrets.GITHUB_TOKEN }}})
+          const octokit = new Octokit()
           await octokit.request('GET /user/emails{?per_page,page}', {})
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Display actor email 
       run: echo "${{steps.actor-email.outputs.result}}"
