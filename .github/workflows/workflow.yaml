@@ -5,6 +5,7 @@ jobs:
   lookup-user-email:
     runs-on: ubuntu-latest
     steps:
+    - run: echo ${{ github.actor }}
     - run: npm install @octokit/action
     - uses: actions/github-script@v6
       id: actor-email
